@@ -162,3 +162,7 @@
 
 ## 260522
 - git config에서 user 정보는 local과 global이 나뉘어 적용될 수 있다
+- UML 클래스 다이어그램 접근 제어자
+  - 기호(+): public
+  - 기호(-): private
+  - 기호(#): protected
