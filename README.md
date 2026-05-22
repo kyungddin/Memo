@@ -158,3 +158,7 @@
 
 ## 260518
 - `git push --force-with-lease` 를 써서 --amend 커밋에 대해 강제 push
+
+
+## 260522
+- git config에서 user 정보는 local과 global이 나뉘어 적용될 수 있다
