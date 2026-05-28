@@ -172,3 +172,16 @@
 - rebase를 쓰면, base 커밋을 옮기면서 브랜치를 정리해주기 때문에.. merge에 비해 그래프가 깔끔해질 수 있다
 - 그러나 base 커밋을 git에서 자동으로 강제 정리하므로, git이 좀 숙련되면 써주자..
 - gitignore의 경우 !를 사용하면 예외처리를 할 수 있지만 항상 먹히지 않는다
+
+
+## 260529
+```markdown
+std::thread기본 스레드 생성std::async / std::future비동기 작업 + 결과 수령std::mutex / std::lock_guard상호 배제std::condition_variable스레드 간 신호std::atomic원자적 연산std::jthread (C++20)join 자동화된 threadstd::latch / std::barrier (C++20)동기화 포인트
+
++ Windows API Thread 연습
+#include <windows.h>
+
+HANDLE h = CreateThread(nullptr, 0, task, nullptr, 0, nullptr);
+WaitForSingleObject(h, INFINITE);
+CloseHandle(h);
+```
