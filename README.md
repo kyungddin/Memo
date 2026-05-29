@@ -185,3 +185,4 @@ HANDLE h = CreateThread(nullptr, 0, task, nullptr, 0, nullptr);
 WaitForSingleObject(h, INFINITE);
 CloseHandle(h);
 ```
+- 객체 배열의 경우 당연히 크기를 알아야하므로 전방선언이 안 먹는다
