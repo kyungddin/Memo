@@ -189,4 +189,5 @@ CloseHandle(h);
 
 
 ## 260601
-- this는 호출 시점의 실제 객체
+- this는 호출 시점의 실제 객체 (windows.h의 스레드를 공부하며)
+- IS-A 관계에서는 public 상속 (실무에서 private 상속인 HAS-A 관계가 나올 일은 잘 없다)
