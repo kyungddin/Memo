@@ -198,3 +198,31 @@ CloseHandle(h);
 - 읽은 책 정리하기
 - 옵시디언 사용법 익히기
 - 기술 스택 정리하기
+
+
+## 260609
+- boost::asio 비동기 I/O 처리를 위한 C++ 라이브러리
+	- 네트워크 통신, 타이머, 파일 I/O에 사용됨
+	- WinSock API 보다, 소켓 통신이 훨씬 간편하다~
+- 스태틱 함수는 멤버 변수에 직접 접근이 불가 (대신에 LPVOID lpData 테크닉 이용)
+	- CreateThread()에서, 함수 다음에 this를 넣어주면 lpData에 this가 들어감
+	- 대신에, 나중에 활용할 때 명시적 형변환 해줘야겠지..?
+- WinSock에서 recv()-send() 루프는 블로킹 (정확히는 recv)
+	- asio는 기본이 비동기(~= 논블로킹)
+- 패킷 직렬화
+	- // 구조체 그대로 전송하면 될 것 같지만
+		struct PDU { int cmd; int result; int len; char data[1024]; };
+		send(sock, (char*)&pdu, sizeof(pdu), 0);
+		
+		// ❌ 문제 발생
+		// 1. 패딩 - 컴파일러마다 구조체 정렬 다름
+		// 2. 엔디안 - x86(리틀) vs ARM(빅) 다를 수 있음
+		// 3. 크기 낭비 - data[1024] 중 10바이트만 써도 1024 전송
+- 우리가 소켓 통신에서 지정하는 헤더는.. 어플리케이션 헤더다
+	- struct PACKET_HEADER
+		{
+		int m_iCmdType;   // "이게 어떤 명령이야"  → 수신측이 어떻게 처리할지 결정
+		int m_iResult;    // "성공이야 실패야"     → 응답 패킷일 때 결과 전달
+		int m_iDataLen;   // "뒤에 N바이트 읽어"  → 패킷 경계 구분
+		};
+	- DataLen이 사실상 유일한 필수값
