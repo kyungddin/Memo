@@ -226,3 +226,8 @@ CloseHandle(h);
 		int m_iDataLen;   // "뒤에 N바이트 읽어"  → 패킷 경계 구분
 		};
 	- DataLen이 사실상 유일한 필수값
+
+## 260610
+- MFC 이쁘게 그리는 갓크닉
+  - CMFC 리소스로 대체
+  - MFC 클래스 오버라이딩
