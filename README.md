@@ -238,4 +238,14 @@ CloseHandle(h);
 
 
 ## 260612
-- MFC 클래스 오버라이딩으로 Ui 개선 
+- MFC 클래스 오버라이딩으로 Ui 개선
+
+
+## 260614
+1. Getter에서 return 타입이 객체이면 const &를 붙여서 복사 방지
+2. getter에 함수에 const를 붙이는 이유
+첫째, const 객체에서도 호출 가능해져. const 없으면 const 객체에서 Getter 호출 자체가 안 돼.
+둘째, 실수로 멤버 변수를 수정하면 컴파일 에러가 나줘서 버그를 미리 잡아줘.
+3. getter return 타입에 const를 붙이는 이유
+ibh.GetCurNode() = "다른노드"; // 원본 멤버 변수가 바뀌어버림
+이런 거 막으려고
