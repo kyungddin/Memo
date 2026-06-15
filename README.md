@@ -249,3 +249,4 @@ CloseHandle(h);
 3. getter return 타입에 const를 붙이는 이유
 ibh.GetCurNode() = "다른노드"; // 원본 멤버 변수가 바뀌어버림
 이런 거 막으려고
+
