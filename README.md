@@ -258,3 +258,35 @@ ibh.GetCurNode() = "다른노드"; // 원본 멤버 변수가 바뀌어버림
 
 - usbipd의 경우 다른 네트워크에 장치를 흘려주는 툴이다
   - 이때 wsl2의 경우 ip가 달라 다른 네트워크로 분류
+
+
+## 260619
+CMake 공부
+	- find_package: CMake를 공식 지원하는 라이브러리
+		- find_package(패키지이름, REQUIRED)
+		- pkg_check_modules(): CMake 설정 파일도 없고, 단순 .so만 찾기도 애매한 경우.. Linux의 pkg-config의 별도의 파일을 읽음 (.pc 파일)
+		- REQUIRED이면 없으면 에러, EXACT 붙이면 정확한 버전, QUIET은 걍 넘어감
+	- find_library: CMake 지원 없이 그냥 .so 파일만 있는 경우
+	- 추가 포함 디렉터리 기본 경로에 /usr/include가 있으며, 만약 여기에 헤더가 있으면, include_dir 해줄 필요가 읎다 (make install 하는 라이브러리는 다 이럼)
+- libusb / libuvc
+
+```
+	libuvc ← UVC 카메라 제어 (고수준) 
+	↓ 
+	libusb ← USB 통신 (저수준) 
+	↓ 
+	USB 하드웨어
+```
+- USB 장치는 전부 고유한 VID/PID를 가져요.
+
+```
+VID (Vendor ID)   →  제조사 식별자
+PID (Product ID)  →  제품 식별자
+```
+
+```
+0x1e4e  →  Thermal Imaging 회사 (PureThermal 제조사)
+0x0100  →  PureThermal 1/2 보드 제품 ID
+```
+
+이 값은 USB 표준 기관(USB-IF)에서 제조사에게 공식 할당하는 거라 전 세계적으로 고유해요. 그래서 `uvc_find_device()`에 이 값을 넣으면 PureThermal 장치만 정확히 찾을 수 있는 거예요.
