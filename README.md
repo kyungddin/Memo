@@ -277,7 +277,26 @@ VID (Vendor ID)   →  제조사 식별자
 PID (Product ID)  →  제품 식별자
 ```
 
-```
+## 260621
+# 260609
+
+- boost::asio 비동기 I/O 처리를 위한 C++ 라이브러리
+	- 네트워크 통신, 타이머, 파일 I/O에 사용됨
+	- WinSock API 보다, 소켓 통신이 훨씬 간편하다~
+- 스태틱 함수는 멤버 변수에 직접 접근이 불가 (대신에 LPVOID lpData 테크닉 이용)
+	- CreateThread()에서, 함수 다음에 this를 넣어주면 lpData에 this가 들어감
+	- 대신에, 나중에 활용할 때 명시적 형변환 해줘야겠지..?
+- WinSock에서 recv()-send() 루프는 블로킹 (정확히는 recv)
+	- asio는 기본이 비동기(~= 논블로킹)
+- 패킷 직렬화
+	- // 구조체 그대로 전송하면 될 것 같지만
+		struct PDU { int cmd; int result; int len; char data[1024]; };
+		send(sock, (char*)&pdu, sizeof(pdu), 0);
+		
+		// ❌ 문제 발생
+		// 1. 패딩 - 컴파일러마다 구조체 정렬 다름
+		// 2. 엔디안 - x86(리틀) vs ARM(빅) 다를 수 있음
+		// 3. 크기 낭비 - data[1024] 중 10바이트만 써도 1024 전송
 0x1e4e  →  Thermal Imaging 회사 (PureThermal 제조사)
 0x0100  →  PureThermal 1/2 보드 제품 ID
 ```
