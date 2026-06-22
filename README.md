@@ -299,6 +299,11 @@ PID (Product ID)  →  제품 식별자
 		// 3. 크기 낭비 - data[1024] 중 10바이트만 써도 1024 전송
 0x1e4e  →  Thermal Imaging 회사 (PureThermal 제조사)
 0x0100  →  PureThermal 1/2 보드 제품 ID
-```
 
 이 값은 USB 표준 기관(USB-IF)에서 제조사에게 공식 할당하는 거라 전 세계적으로 고유해요. 그래서 `uvc_find_device()`에 이 값을 넣으면 PureThermal 장치만 정확히 찾을 수 있는 거예요.
+
+
+## 260622
+- git 관련 경험
+  - amend를 활용한 커밋 시, 이를 원격에 push할 경우 --force를 붙여야 하니 신중할 것
+  - PR 후에 수정 사항을 커밋하면 해당 내역이 자동으로 PR에 등록된다
