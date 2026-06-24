@@ -322,3 +322,22 @@ Rule of Zero는 한 줄로 말하면, 특수 멤버 함수를 직접 하나도 �
 	- C++에서 gtest(Google Test)를 하면 테스트 코드 작성을 간소화할 수 있다. 다만 입력값은 여전히 개발자 본인이 생각해서 집어넣어줘야함
 	- 다만 rapidcheck을 쓰면 이를 해결할 수 있다. 이는 무작위로 입력값을 넣어주는 라이브러리로 gtest와 조합하면 강력한 테스트 프로그래밍이 가능할듯?
     - 그럼에도, MFC는 모듈 단위 검증이 힘들다. 리소스끼리 서로를 참조하는 스파게티 구조라서.. 그래서 내가 만든 로직 모듈에 대해서만 검증을 거치자.
+
+- 즐거운 문자열 변환
+```
+1. const char* → std::string가장 쉽습니다. std::string 생성자가 받아줍니다.cppconst char* p = "hello";
+std::string s = p;          // 또는 std::string s(p);2. std::string → const char*앞서 본 .c_str(). (수명 주의)cppstd::string s = "hello";
+const char* p = s.c_str();   // const char* (읽기 전용, s가 살아있는 동안만 유효)3. const char* → CStringCString 생성자나 대입이 받아줍니다. 유니코드 빌드여도 CString이 알아서 변환해줍니다.cppconst char* p = "hello";
+CString cs(p);              // 또는 CString cs = p;4. CString → const char* (또는 LPCTSTR)CString은 LPCTSTR로의 캐스팅을 지원합니다. 단, 이게 빌드에 따라 타입이 다릅니다.cppCString cs = _T("hello");
+LPCTSTR p = (LPCTSTR)cs;     // 또는 cs.GetString();유니코드 빌드면 LPCTSTR은 const wchar_t*, 멀티바이트면 const char*입니다. 그래서 "순수 const char*"가 필요하면 유니코드 빌드에서는 한 단계 더 변환해야 합니다(아래 5, 6번 활용). 앞서 Format에서 (LPCTSTR) 캐스팅을 다뤘던 게 이 부분입니다.5. CString → std::string여기가 까다롭습니다. 빌드에 따라 갈립니다.멀티바이트 빌드라면 단순합니다(둘 다 char):
+cppCString cs = "hello";
+std::string s = (LPCSTR)cs;   // 또는 s = cs.GetString();유니코드 빌드라면 wchar_t → char 인코딩 변환이 필요합니다. 가장 간편한 건 MFC의 CT2A(또는 CW2A) 변환 매크로입니다.cppCString cs = _T("hello");
+std::string s = CT2A(cs);        // CString → ANSI(char)로 변환
+// 또는 명시적으로: std::string s = CW2A(cs.GetString());CStringA를 거치는 방법도 있습니다.
+cppstd::string s = CStringA(cs);    // CStringA로 변환 후 char*로6. std::string → CString이것도 빌드에 따라 갈립니다.멀티바이트 빌드:
+cppstd::string s = "hello";
+CString cs = s.c_str();       // 단순 대입유니코드 빌드 (char → wchar_t 변환 필요):
+cppstd::string s = "hello";
+CString cs = CA2T(s.c_str());    // ANSI(char) → CString으로 변환
+// 또는: CString cs(s.c_str());  // CString 생성자가 변환해주기도 함
+```
