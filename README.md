@@ -341,3 +341,8 @@ cppstd::string s = "hello";
 CString cs = CA2T(s.c_str());    // ANSI(char) → CString으로 변환
 // 또는: CString cs(s.c_str());  // CString 생성자가 변환해주기도 함
 ```
+
+## 260625
+- Getter와 Setter는 필요할때만 만들자..
+- IP를 특정하는 코드를 짜는 것은 어렵다, NIC 때문에
+- 
