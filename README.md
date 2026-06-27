@@ -372,3 +372,4 @@ PNM 매직 시그니처는 P1은 PBM(ASCII), P2는 PGM(ASCII), P3는 PPM(ASCII),
 ## 260627
 - DLL 로딩, extern 등에 대해 복습하기
 - 그냥 C++을 되돌아보자
+- TCP 소켓을 활용한 멀티 LLM 프롬프트 구조?
