@@ -376,7 +376,6 @@ PNM 매직 시그니처는 P1은 PBM(ASCII), P2는 PGM(ASCII), P3는 PPM(ASCII),
 
 
 ## 260629
-```
-전역 객체를 공유하려면 헤더에 extern, .cpp에 정의 하나. static 멤버는 extern 대신 클래스명::멤버명 형식으로 .cpp에 정의(또는 C++17 inline static). 둘 다 "정의는 단 한 번"이라는 ODR(One Definition Rule) 원칙이 핵심입니다.
-
-```
+- extern 클래스 다시 정리하기
+- VDA5050 표준 파악하기
+- WebView2 파악하기
