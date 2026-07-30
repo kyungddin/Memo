@@ -379,3 +379,10 @@ PNM 매직 시그니처는 P1은 PBM(ASCII), P2는 PGM(ASCII), P3는 PPM(ASCII),
 - extern 클래스 다시 정리하기
 - VDA5050 표준 파악하기
 - WebView2 파악하기
+
+## 260730
+- 코드 줄이 너무 짧으면 sonarqube가 정적분석을 못잡는다 (나 같은 경우에는 중복)
+- sourcetree git도 익혀두기
+- 특정 branch 작업 중 기능 추가가 필요하면 거기에서 브랜치를 뻗어나가기
+- sonarqube 중복의 경우 설정마다 다르겠지만 중복 횟수가 늘어난다고 이것까지 잡진 못한다
+- git rebase 공부하기
