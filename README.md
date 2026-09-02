@@ -398,3 +398,9 @@ PNM 매직 시그니처는 P1은 PBM(ASCII), P2는 PGM(ASCII), P3는 PPM(ASCII),
 - 주요 디버깅 메세지
   - 변수가 최적화되어 사용할 수 없습니다
   - 소스코드가 원래 버전과 일치하지 않습니다
+
+
+## 260903
+- pch.h를 cpp에서만 include 하는 이유
+  - MSVC(MicroSoft Visual C++ Compiler) 자체가 cpp 시작 시점에 #include "pch.h"를 만날 때 미리 컴파일된 헤더를 로딩하기 때문이다
+- hpp는 C++ 전용 헤더 파일로 C 헤더와의 구분을 위한 것
