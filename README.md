@@ -411,6 +411,7 @@ PNM 매직 시그니처는 P1은 PBM(ASCII), P2는 PGM(ASCII), P3는 PPM(ASCII),
   - 최소 지식 원칙에 따라, 복잡한 절차를 단순화 하기 위해 여러 서브시스템의 시퀀스를 묶는 인터페이스를 만드는 패턴
 - 보드에 내장된 코드가 펌웨어라면, 장비에 대한 인터페이스 (ex: Drive()) 와 같은 것이 HAL이다
 - `__declspec(dllexport)` : dll을 외부에 공개할 때는 dllexport, 내부일 때는 dllimport
+  - Mircosoft의 declare specifier를 쓴 것, MSVC 컴파일러가 표준 C/C++ 문법에 없는 확장 속성을 선언에 붙이기 위해 만든 키워드
 - extern 테크닉: 선언과 정의를 동시에 하기 위한 테크닉
 ```cpp
 #ifdef _DLL_MAIN_CPP_
