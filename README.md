@@ -404,3 +404,8 @@ PNM 매직 시그니처는 P1은 PBM(ASCII), P2는 PGM(ASCII), P3는 PPM(ASCII),
 - pch.h를 cpp에서만 include 하는 이유
   - MSVC(MicroSoft Visual C++ Compiler) 자체가 cpp 시작 시점에 #include "pch.h"를 만날 때 미리 컴파일된 헤더를 로딩하기 때문이다
 - hpp는 C++ 전용 헤더 파일로 C 헤더와의 구분을 위한 것
+
+
+## 260907
+- 디자인 패턴: 퍼사드 패턴 (Facade Pattern)
+  - 최소 지식 원칙에 따라, 복잡한 절차를 단순화 하기 위해 여러 서브시스템의 시퀀스를 묶는 인터페이스를 만드는 패턴
